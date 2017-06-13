@@ -11,8 +11,11 @@
 	</head>
 
 	<body>
-		<canvas width="200px" height="100px"></canvas>
+		<section class="main">
+			<canvas id="canvas"></canvas>
+		</section>
 		<!--jQuery--> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<!--js.cookie--> <script src="/js/js.cookie-2.1.4.min.js"></script>
+		<script src="js/home.js"></script>
 	</body>
 </html>
