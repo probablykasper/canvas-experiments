@@ -10,8 +10,10 @@
 	</head>
 
 	<body>
-		<a href="3">3. circle bouncing on canvas borders</a>
-		<a href="2">2. squares, a line and randomly positioned circles</a>
-		<a href="1">1. two squares</a>
+		<section class="main">
+			<canvas></canvas>
+		</section>
+		<!--jQuery--> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="/js/home.js?r=<?rand(0,999)?>"></script>
 	</body>
 </html>

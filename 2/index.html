@@ -10,8 +10,9 @@
 	</head>
 
 	<body>
-		<a href="3">3. circle bouncing on canvas borders</a>
-		<a href="2">2. squares, a line and randomly positioned circles</a>
-		<a href="1">1. two squares</a>
+		<section class="main">
+			<canvas width="300px" height="150px"></canvas>
+		</section>
+		<script src="main.js"></script>
 	</body>
 </html>
