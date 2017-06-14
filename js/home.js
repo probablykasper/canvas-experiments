@@ -4,48 +4,33 @@ canvas.width = window.innerWidth-20;
 canvas.height = window.innerHeight-20;
 var c = canvas.getContext("2d");
 
-// c.fillRect(x, y, w, h);
-c.fillStyle = "#00C8A4";
-c.fillRect(100, 100, 100, 100);
 
-c.fillStyle = "#0086C8";
-c.fillRect(200, 200, 100, 100);
-c.fillStyle = "#C8005A";
-c.fillRect(300, 300, 100, 100);
+var radius = 50;
 
-c.beginPath();
-// c.moveTo(x,y);
-c.moveTo(200, 100);
-c.lineTo(400, 300);
-c.strokeStyle = "#000000";
-c.stroke();
-c.fillRect(200, 100, 100, -100);
-c.fillRect(300, 200, 100, -100);
-c.fillRect(400, 300, 100, -100);
+var x = Math.random()*(canvas.width-radius*2)+radius;
+dx = (Math.random()+1)*3;
+if (dx > 4.5) dx = -dx;
 
-c.beginPath();
-// c.arc(x, y, radius, startAngle, endAngle, drawCounterClockwise?)
-c.strokeStyle = "#00C8A4";
-// c.arc(250, 150, 50, 0, Math.PI*2, false);
-c.stroke();
+var y = Math.random()*(canvas.height-radius*2)+radius;
+dy = (Math.random()+1)*3;
+if (dy > 4.5) dy = -dy;
 
-for (var i = 0; i < 10; i++) {
-	var x = Math.random() * canvas.width;
-	var y = Math.random() * canvas.height;
-	switch ( Math.ceil( Math.random()*3 ) ) {
-		case 1:
-		c.strokeStyle = "#00C8A4";
-		break;
-		case 2:
-		c.strokeStyle = "#dddddd";
-		break;
-		case 3:
-		c.strokeStyle = "#000000";
-		break;
-	}
-	c.lineWidth = 2;
-	console.log(i);
+function animate() {
+	requestAnimationFrame(animate);
+	c.clearRect(0, 0, innerWidth, innerHeight);
+
 	c.beginPath();
-	c.arc(x, y, 50, 0, Math.PI*2, false);
+	c.strokeStyle = "#00C8A4";
+	c.lineWidth = 2
+	c.arc(x, y, radius, 0, Math.PI*2, false);
 	c.stroke();
+
+	if (x >= canvas.width-50) dx = -(Math.random()+1)*3;
+	if (x <= radius) dx = (Math.random()+1)*3;
+	if (y >= canvas.height-50) dy = -(Math.random()+1)*3;
+	if (y <= radius) dy = (Math.random()+1)*3;
+
+	x += dx;
+	y += dy;
 }
+animate();
