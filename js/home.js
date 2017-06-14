@@ -1,16 +1,19 @@
-var c = document.getElementById("canvas");
-var ch = c.clientHeight;
-var cw = c.clientWidth;
-var pi = Math.PI;
-var ctx = c.getContext("2d");
+window.onload = draw;
 
-// Line
-ctx.moveTo(0,0);
-ctx.lineTo(cw,ch);
-ctx.stroke();
+function draw() {
+	// Assign canvas el to var
+	var c = document.getElementById("canvas");
+	var ctx = c.getContext("2d");
+	var ch = c.clientHeight;
+	var cw = c.clientWidth;
 
-// Circliboi
-ctx.beginPath();
-// arc(anchor X, anchor Y, radius, line start point, line end point)
-ctx.arc(cw/2, ch/2, ch/2, pi, 2*pi);
-ctx.stroke();
+	// fillStyle(r,g,b,alpha)
+	// fillRect(x,y,w,h)
+
+	ctx.fillStyle = "rgba(0, 200, 164, 1)";
+	var gap = 2;
+	ctx.fillRect(cw/2-25-gap, ch/2-25-gap, 50, 50);
+
+	ctx.fillStyle = "rgba(0, 134, 200, 1)";
+	ctx.fillRect(cw/2-25+gap, ch/2-25+gap, 50, 50);
+}
