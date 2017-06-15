@@ -42,7 +42,23 @@ function Circle(x, y, dx, dy, radius, color) {
 		c.fill();
 	}
 	// var justStarted = true;
-	this.update = function() {
+	this.update = function(currentCircleIndex) {
+
+		this.left = this.x - this.radius;
+		this.right = this.x + this.radius;
+		this.top = this.y - this.radius;
+		this.bottom = this.y + this.radius;
+
+		for (var i = 0; i < circles.length; i++) {
+			if (
+				circles[i].left < this.right && this.left < circles[i].right &&
+				circles[i].top < this.bottom && this.top < circles[i].bottom &&
+				i != currentCircleIndex
+			) {
+				this.dx = -this.dx;
+				this.dy = -this.dy;
+			}
+		}
 
 		// bounce on edges
 		if (this.x >= canvas.width-this.radius) this.dx = -(Math.random()+1)*3;
@@ -68,6 +84,9 @@ function Circle(x, y, dx, dy, radius, color) {
 		// 	justStarted = true;
 		// }
 
+		// this.dx = 0;
+		// this.dy = 0;
+
 		this.x += this.dx;
 		this.y += this.dy;
 		this.draw();
@@ -75,16 +94,16 @@ function Circle(x, y, dx, dy, radius, color) {
 }
 
 var circles = [];
-for (var i = 0; i < circlesAmount; i++) {
+for (var i = 0; i < 2; i++) {
+	var radius = (Math.random()+0.25)*50;
 	var x = Math.random()*(canvas.width-radius*2)+radius;
 	var y = Math.random()*(canvas.height-radius*2)+radius;
 	var dx = (Math.random()+1)*3;
 	var dy = (Math.random()+1)*3;
 	if (Math.random() < 0.5) dx = -dx;
 	if (Math.random() < 0.5) dy = -dy;
-	var radius = (Math.random()+0.25)*50;
 	var color = this.fillStyle = colors[Math.floor(Math.random()*colors.length)]
-	circles[i] = new Circle(x, y, dx, dy, radius, color);
+	circles.push(new Circle(x, y, dx, dy, radius, color));
 	circles[i].draw();
 }
 
@@ -93,7 +112,7 @@ function animate() {
 	c.clearRect(0, 0, innerWidth, innerHeight); // clear canvas
 
 	for (var i = 0; i < circles.length; i++) {
-		circles[i].update();
+		circles[i].update(i);
 	}
 }
 animate();

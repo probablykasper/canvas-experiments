@@ -10,6 +10,7 @@
 	</head>
 
 	<body>
+		<a href="5">5. and now they bounce off of each other</a>
 		<a href="4">4. many boucning circles with random colors, radiuses and window resize support</a>
 		<a href="3">3. circle bouncing on canvas borders</a>
 		<a href="2">2. squares, a line and randomly positioned circles</a>
