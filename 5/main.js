@@ -17,7 +17,7 @@ window.addEventListener("mousemove", function(event) {
 	mouse.y = event.y;
 });
 
-var circlesAmount = 20;
+var circlesAmount = 5
 colors = [
 	"#070F4E",
 	"#2772DB",
@@ -94,7 +94,7 @@ function Circle(x, y, dx, dy, radius, color) {
 }
 
 var circles = [];
-for (var i = 0; i < 2; i++) {
+for (var i = 0; i < circlesAmount; i++) {
 	var radius = (Math.random()+0.25)*50;
 	var x = Math.random()*(canvas.width-radius*2)+radius;
 	var y = Math.random()*(canvas.height-radius*2)+radius;
