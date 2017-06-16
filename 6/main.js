@@ -6,8 +6,8 @@ var c = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 window.addEventListener("resize", function() {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 });
 
 // draw a circle
@@ -20,21 +20,21 @@ function draw(radius, x, y, color) {
 
 var circleAmount = window.innerWidth*window.innerHeight/100000;
 colors = [
-	"#070F4E",
-	"#2772DB",
-	"#3AB1C8",
-	"#F5EBEB"
+    "#070F4E",
+    "#2772DB",
+    "#3AB1C8",
+    "#F5EBEB"
 ];
 var circles = [], nc = []; // newCircles
 for (var i = 0; i < circleAmount; i++) {
-	var radius = (Math.random()+0.25)*50;
-	var x = Math.random()*(canvas.width-radius*2)+radius;
-	var y = Math.random()*(canvas.height-radius*2)+radius;
-	var dx = (Math.random()+1)*3;
-	var dy = (Math.random()+1)*3;
+    var radius = (Math.random()+0.25)*50;
+    var x = Math.random()*(canvas.width-radius*2)+radius;
+    var y = Math.random()*(canvas.height-radius*2)+radius;
+    var dx = (Math.random()+1)*3;
+    var dy = (Math.random()+1)*3;
     var color = colors[Math.floor(Math.random()*colors.length)];
-	if (Math.random() < 0.5) dx = -dx;
-	if (Math.random() < 0.5) dy = -dy;
+    if (Math.random() < 0.5) dx = -dx;
+    if (Math.random() < 0.5) dy = -dy;
     circles[i] = {
         radius: radius,
         x: x,
@@ -87,10 +87,10 @@ function animate() {
     requestAnimationFrame(animate); // init animation
     c.clearRect(0, 0, innerWidth, innerHeight); // clear canvas
 
-    nc = circles;
+    nc = JSON.parse(JSON.stringify(circles));
     for (var i = 0; i < circles.length; i++) { // update every circle
         update(i);
     }
-    circles = nc;
+    circles = JSON.parse(JSON.stringify(nc));
 }
 animate();
