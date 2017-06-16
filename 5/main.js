@@ -17,7 +17,7 @@ window.addEventListener("mousemove", function(event) {
 	mouse.y = event.y;
 });
 
-var circlesAmount = 5
+var circlesAmount = window.innerWidth*window.innerHeight/100000;
 colors = [
 	"#070F4E",
 	"#2772DB",
@@ -41,23 +41,53 @@ function Circle(x, y, dx, dy, radius, color) {
 		c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false); //draw the actual circle
 		c.fill();
 	}
-	// var justStarted = true;
 	this.update = function(currentCircleIndex) {
 
-		this.left = this.x - this.radius;
-		this.right = this.x + this.radius;
-		this.top = this.y - this.radius;
-		this.bottom = this.y + this.radius;
+		// this.left = this.x - this.radius;
+		// this.right = this.x + this.radius;
+		// this.top = this.y - this.radius;
+		// this.bottom = this.y + this.radius;
 
 		for (var i = 0; i < circles.length; i++) {
-			if (
-				circles[i].left < this.right && this.left < circles[i].right &&
-				circles[i].top < this.bottom && this.top < circles[i].bottom &&
-				i != currentCircleIndex
-			) {
-				this.dx = -this.dx;
-				this.dy = -this.dy;
-			}
+
+            if (i != currentCircleIndex) {
+                var distancex = circles[i].x - this.x;
+                var distancey = circles[i].y - this.y;
+                var distanceBetweenCircles = Math.sqrt( distancex*distancex + distancey*distancey );
+                // console.log(distancex + "   " + circles[i].x + "   " + this.x + "   " + i);
+                // cat^2 + cat^2 = hyp^2
+
+                var distance = this.radius + circles[i].radius;
+                var directionx = (circles[i].x - this.x) / distance;
+                var directiony = (circles[i].y - this.y) / distance;
+                var intersectionx = this.x + directionx * this.radius;
+                var intersectiony = this.y + directiony * this.radius;
+
+                if (distanceBetweenCircles < 0) distanceBetweenCircles = -distanceBetweenCircles;
+                if (distanceBetweenCircles < distance) {
+                    this.dx = -directionx+(this.dx+this.dy)/2;
+                    this.dy = -directiony+(this.dx+this.dy)/2;
+                }
+            }
+
+            // var intersx = this.x + (circles[i].x - this.x) / (this.radius + circles[i].radius) * this.radius;
+            //            // c1     + (c2           - c1    ) / (r1          + r2               ) * r1
+            //
+            // c1 + (c2-c1)/(r1+r2) * r1
+            //
+            // dist = r1+r2;
+            // dir = (c2-c1) / dist;
+            // inters = c1 + dir * r1
+            //
+            // if (
+            // 	circles[i].left <= this.right && this.left <= circles[i].right &&
+            // 	circles[i].top <= this.bottom && this.top <= circles[i].bottom &&
+            // 	i != currentCircleIndex
+            // ) {
+            // 	this.dx = -this.dx;
+            // 	this.dy = -this.dy;
+            // }
+
 		}
 
 		// bounce on edges
@@ -65,24 +95,6 @@ function Circle(x, y, dx, dy, radius, color) {
 		if (this.x <= this.radius) this.dx = (Math.random()+1)*3;
 		if (this.y >= canvas.height-this.radius) this.dy = -(Math.random()+1)*3;
 		if (this.y <= this.radius) this.dy = (Math.random()+1)*3;
-
-		// // stop on hover
-		// var closeness = 50;
-		// if (this.x-this.radius < mouse.x && this.x+this.radius > mouse.x
-		//  && this.y-this.radius < mouse.y && this.y+this.radius > mouse.y) {
-		// 	if (justStarted) {
-		// 		this.dxOriginal = this.dx;
-		// 		this.dyOriginal = this.dy;
-		// 		justStarted = false;
-		// 	}
-		// 	this.dx = 0;
-		// 	this.dy = 0;
-		// 	firstTime = false;
-		// } else if (!justStarted ) {
-		// 	this.dx = this.dxOriginal;
-		// 	this.dy = this.dyOriginal;
-		// 	justStarted = true;
-		// }
 
 		// this.dx = 0;
 		// this.dy = 0;
