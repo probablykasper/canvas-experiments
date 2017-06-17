@@ -61,8 +61,8 @@ function update(ci) { // circleIndex
                 var yDir = (circles[cpi].y - circles[ci].y) / radii;
                 var xInters = circles[ci].x + xDir * circles[ci].radius;
                 var yInters = circles[ci].y + yDir * circles[ci].radius;
-                var xNormal = (xInters - circles[ci].x) / circles[ci].radius;
-                var yNormal = (yInters - circles[ci].y) / circles[ci].radius;
+                var xNormal = (xInters - circles[cpi].x) / circles[cpi].radius;
+                var yNormal = (yInters - circles[cpi].y) / circles[cpi].radius;
                 var xNewDir = circles[ci].dx - 2 * (  circles[ci].dx * xNormal + circles[ci].dy * yNormal  ) * xNormal;
                 var yNewDir = circles[ci].dy - 2 * (  circles[ci].dx * xNormal + circles[ci].dy * yNormal  ) * yNormal;
 
