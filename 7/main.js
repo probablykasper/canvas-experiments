@@ -36,13 +36,13 @@ function draw(x, y, radius, startAng, endAng, liiineWidth, color, clockWise, fil
 
 var lineWidth = 0, increment = true;
 setInterval(function() {
-    if (lineWidth == 101) increment = false;
+    if (lineWidth > thatRadius) increment = false;
     if (lineWidth == 0) increment = true;
     if (increment) lineWidth++;
     if (!increment) lineWidth--;
 }, 52.25)
 
-var start = 0, stop = 0, baseSpeed = 10, speedMultiplier = 2;
+var start = 0, stop = 0, baseSpeed = 10, speedMultiplier = 2, thatRadius;;
 var shapes = [], slice = Math.PI/4, inverted = false, incr = 2, loop = baseSpeed*50; // incrementor
 function animate() {
     requestAnimationFrame(animate); // init animation
@@ -62,9 +62,16 @@ function animate() {
         inverted = false;
     }
 
-    draw(cw/4*1, ch/2, 50, startToUse/loop, stopToUse/loop, 2, "#236568", true);
-    draw(cw/4*2, ch/2, 50, startToUse/loop, stopToUse/loop, lineWidth, "#3E3277", false);
-    draw(cw/4*3, ch/2, 50, startToUse/loop, stopToUse/loop, 1, "#7D2A6B", true, true);
+    if (window.innerWidth < window.innerHeight) {
+        var radius = window.innerWidth/15;
+        thatRadius = window.innerWidth/15;
+    } else {
+        var radius = window.innerHeight/15;
+        thatRadius = window.innerHeight/15;
+    }
+    draw(cw/4*1, ch/2, radius, startToUse/loop, stopToUse/loop, 2, "#236568", true);
+    draw(cw/4*2, ch/2, thatRadius, startToUse/loop, stopToUse/loop, lineWidth, "#3E3277", false);
+    draw(cw/4*3, ch/2, radius, startToUse/loop, stopToUse/loop, 1, "#7D2A6B", true, true);
     if (!inverted) {
         start = start +  baseSpeed;
         stop  = stop  +  baseSpeed * speedMultiplier;
