@@ -49,13 +49,13 @@ for (var i = 0; i < circleAmount; i++) {
 
 function update(ci) { // circleIndex
 
-    console.log(nc[ci]);
-    console.log("1 ^");
+    // console.log(nc[ci]);
+    // console.log("1 ^");
 
     for (var cpi = 0; cpi < circles.length; cpi++) { // comparisonIndex
         if (cpi != ci) { // avoid comparing to itself
-            console.log(nc[ci]);
-            console.log("2 ^");
+            // console.log(nc[ci]);
+            // console.log("2 ^");
             var xDist = circles[cpi].x - circles[ci].x; // difference of c1x & c2x
             var yDist = circles[cpi].y - circles[ci].y; // difference of c1y & c2y
             var distBetweenCircles = Math.sqrt( xDist*xDist + yDist*yDist ); // distance from c1 to c2
@@ -64,36 +64,39 @@ function update(ci) { // circleIndex
 
             if (distBetweenCircles < radii) { // if the circles are overlapping
                 // cpi intersection
-                console.log(nc[ci]);
-                console.log("3 ^");
+                // console.log(nc[ci]);
+                // console.log("3 ^");
 
                 var xDir1 = (circles[ci].x - circles[cpi].x) / radii;
-                    console.log(`var xDir1 = (${circles[ci].x} - ${circles[cpi].x}) / ${radii};`);
+                    // console.log(`var xDir1 = (${circles[ci].x} - ${circles[cpi].x}) / ${radii};`);
                 var yDir1 = (circles[ci].y - circles[cpi].y) / radii;
                 var xInters1 = circles[ci].x + xDir1 * circles[ci].radius;
                 if (xInters1 < 0) xInters1 = -xInters1;
-                    console.log(`var xInters1 = ${circles[ci].x} + ${xDir1} * ${circles[ci].radius}; (+ make positive)`);
+                    // console.log(`var xInters1 = ${circles[ci].x} + ${xDir1} * ${circles[ci].radius}; (+ make positive)`);
                 var yInters1 = circles[ci].y + yDir1 * circles[ci].radius;
                 if (yInters1 < 0) yInters1 = -yInters1;
                 // ci intersection
-                var xDir2 = (circles[cpi].x - circles[ci].x) / radii;
-                    console.log(`var xDir2 = (${circles[cpi].x} - ${circles[ci].x}) / ${radii};`);
-                var yDir2 = (circles[cpi].y - circles[ci].y) / radii;
+                var xDir2 = -xDir1;
+                    // console.log(`var xDir2 = -xDir1`);
+                var yDir2 = -yDir1;
                 var xInters2 = circles[cpi].x + xDir2 * circles[cpi].radius;
                 if (xInters2 < 0) xInters2 = -xInters2;
-                    console.log(`var xInters2 = ${circles[cpi].x} + ${xDir2} * ${circles[cpi].radius}; (+ make positive)`);
+                    // console.log(`var xInters2 = ${circles[cpi].x} + ${xDir2} * ${circles[cpi].radius}; (+ make positive)`);
                 var yInters2 = circles[cpi].y + yDir2 * circles[cpi].radius;
                 if (yInters2 < 0) yInters2 = -yInters2;
 
                 var xInters = (xInters2 + xInters1) / 2;
-                    console.log(`var xInters = (${xInters2} + ${xInters1});`);
+                    // console.log(`var xInters = (${xInters2} + ${xInters1});`);
                 var yInters = (yInters2 + yInters1) / 2;
 
-                console.log(`xi1: ${xInters1}   xi2: ${xInters2}   xi: ${xInters}`)
+                // console.log(`xi1: ${xInters1}   xi2: ${xInters2}   xi: ${xInters}`)
 
-                nc[ci].x = xInters + (circles[ci].x - xInters);
-                    console.log(`nc[ci].x = ${xInters} + (${circles[ci].x} - ${xInters});`)
-                nc[ci].y = yInters + (circles[ci].y - yInters);
+                nc[ci].x = circles[ci]+xInters1-xInters;
+                nc[ci].y = circles[ci]+yInters1-yInters;
+
+                // nc[ci].x = xInters + (circles[ci].x - xInters);
+                    // console.log(`nc[ci].x = ${xInters} + (${circles[ci].x} - ${xInters});`)
+                // nc[ci].y = yInters + (circles[ci].y - yInters);
 
                 var xNormal = (xInters - circles[cpi].x) / circles[cpi].radius;
                 var yNormal = (yInters - circles[cpi].y) / circles[cpi].radius;
@@ -103,8 +106,8 @@ function update(ci) { // circleIndex
                 nc[ci].dx = xNewDir;
                 nc[ci].dy = yNewDir;
 
-                console.log(nc[ci]);
-                console.log("4 ^");
+                // console.log(nc[ci]);
+                // console.log("4 ^");
             }
         }
     }
@@ -119,8 +122,8 @@ function update(ci) { // circleIndex
     nc[ci].y += nc[ci].dy; // increment y position
 
     draw(nc[ci].radius, nc[ci].x, nc[ci].y, nc[ci].color); // finally draw the circle
-    console.log(nc[ci]);
-    console.log("5 ^");
+    // console.log(nc[ci]);
+    // console.log("5 ^");
 }
 function animate() {
     requestAnimationFrame(animate); // init animation
