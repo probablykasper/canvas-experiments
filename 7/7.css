@@ -1,7 +1,0 @@
-body { background-color: #272730; margin: 0px; font-family: 'Roboto', Arial, sans-serif; color: black; }
-
-body a { display: block; }
-
-section { position: absolute; width: 100%; height: 100%; display: block; }
-
-section canvas { position: relative; transform: translate(-50%, -50%); top: 50%; left: 50%; display: block; }

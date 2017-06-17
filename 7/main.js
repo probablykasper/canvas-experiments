@@ -42,7 +42,7 @@ setInterval(function() {
     if (!increment) lineWidth--;
 }, 52.25)
 
-var start = 0, stop = 0, baseSpeed = 10, speedMultiplier = 2, thatRadius;;
+var start = 0, stop = 0, baseSpeed = 10, speedMultiplier = 2, thatRadius;
 var shapes = [], slice = Math.PI/4, inverted = false, incr = 2, loop = baseSpeed*50; // incrementor
 function animate() {
     requestAnimationFrame(animate); // init animation
