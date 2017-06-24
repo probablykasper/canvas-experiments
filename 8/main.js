@@ -15,20 +15,34 @@ var mousedown;
 // var oldmx = mx;
 // var oldmy = my;
 var mx, my, oldmx, oldmy;
+
 window.addEventListener("mousedown", function() {
     mousedown = true;
 });
+window.addEventListener("touchstart", function() {
+    mousedown = true;
+});
+
 window.addEventListener("mouseup", function() {
     mousedown = false;
 });
+window.addEventListener("touchend", function() {
+    mousedown = false;
+});
+
 window.addEventListener("mousemove", function(e) {
     oldmx = mx;
     oldmy = my;
     mx = window.event.clientX;
     my = window.event.clientY;
-    if (mousedown) {
-        draw();
-    }
+    if (mousedown) draw();
+});
+window.addEventListener("touchmove", function(e) {
+    oldmx = mx;
+    oldmy = my;
+    mx = window.event.clientX;
+    my = window.event.clientY;
+    if (mousedown) draw();
 });
 
 function draw() {
