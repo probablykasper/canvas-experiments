@@ -23,13 +23,6 @@ window.addEventListener("touchstart", function() {
     mousedown = true;
 });
 
-window.addEventListener("mouseup", function() {
-    mousedown = false;
-});
-window.addEventListener("touchend", function() {
-    mousedown = false;
-});
-
 window.addEventListener("mousemove", function(e) {
     oldmx = mx;
     oldmy = my;
@@ -42,7 +35,7 @@ window.addEventListener("touchmove", function(e) {
     oldmy = my;
     mx = window.event.clientX;
     my = window.event.clientY;
-    if (mousedown) draw();
+    draw();
 });
 
 function draw() {
