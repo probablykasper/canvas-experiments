@@ -46,18 +46,18 @@ canvas.addEventListener("touchend", function (e) {
 // on touch move
 canvas.addEventListener("touchmove", function(e) {
     touchPosLast = touchPos;
-    touchPos = getTouchpos(e);
+    touchPos = getTouchPos(e);
     if (drawing) {
         draw();
     }
 }, false);
 
 function startDraw() {
-    alert("start");
+    console.log("start");
     drawing = true;
 }
 function endDraw() {
-    alert("start");
+    console.log("start");
     drawing = false;
 }
 function draw() {

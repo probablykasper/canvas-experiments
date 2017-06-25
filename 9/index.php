@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="theme-color" content="#db5945">
+		<meta name="theme-color" content="#2B2E34">
 		<title>Canvas</title>
 		<!--Roboto--> <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
 		<!--Favicon: http:/#F986DF/realfavicongenerator.net -->
