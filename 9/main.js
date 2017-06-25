@@ -2,8 +2,6 @@
 // init canvas
 var canvas = document.querySelector("canvas");
 var c = canvas.getContext("2d");
-c.lineWidth = 1;
-c.strokeStyle = "#ffffff";
 
 var cw, ch;
 function resize() {
@@ -27,7 +25,7 @@ resize();
 function getTouchPos(e) {
     return {
         x: e.touches[0].clientX - canvas.getBoundingClientRect().left,
-        y: e.touches[0].clientY - canvas.getBoundingClientRect().top,
+        y: e.touches[0].clientY - canvas.getBoundingClientRect().top
     }
 }
 
@@ -36,7 +34,6 @@ var touchPos = {}, touchPosLast = {}, drawing;
 canvas.addEventListener("touchstart", function(e) {
     var touch = e.touches[0];
     touchPos = getTouchPos(e);
-    c.beginPath();
     startDraw();
 }, false);
 // on touch up
@@ -54,10 +51,13 @@ canvas.addEventListener("touchmove", function(e) {
 
 function startDraw() {
     console.log("start");
+    c.beginPath();
+    c.lineWidth = 1;
+    c.strokeStyle = "#ffffff";
     drawing = true;
 }
 function endDraw() {
-    console.log("start");
+    console.log("end");
     drawing = false;
 }
 function draw() {
