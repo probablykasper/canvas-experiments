@@ -26,8 +26,8 @@ resize();
 // get position of the touch relative to canvas
 function getTouchPos(e) {
     return {
-        x: e.touches[0].clientX - canvas.getBoundingClientRect().left;
-        y: e.touches[0].clientY - canvas.getBoundingClientRect().top;
+        x: e.touches[0].clientX - canvas.getBoundingClientRect().left,
+        y: e.touches[0].clientY - canvas.getBoundingClientRect().top,
     }
 }
 
