@@ -3,46 +3,59 @@
 var canvas = document.querySelector("canvas");
 var c = canvas.getContext("2d");
 
+var cw, ch;
+function resize() {
+    var cw = window.innerWidth-50;
+    var ch = window.innerHeight-50;
+    // if cw is odd, make aspect ratio correct (2:1)
+    if (cw%2 == 1) cw--;
+
+    // set canvas w/h
+    if (ch < cw/2) {
+        canvas.width = ch*2;
+        canvas.height = ch;
+    } else {
+        canvas.width = cw;
+        canvas.height = cw/2;
+    }
+}
+
 // update canvas size
-var cw = window.innerWidth;
-var ch = window.innerHeight;
-canvas.width = cw;
-canvas.height = ch;
+resize();
+// window.addEventListener("resize", function() {
+//     resize();
+// });
 
-var mousedown;
-// var mx = window.event.clientX;
-// var my = window.event.clientY;
-// var oldmx = mx;
-// var oldmy = my;
-var mx, my, oldmx, oldmy;
-
-window.addEventListener("mousedown", function() {
+var mousedown, mx, my, oldmx, oldmy, leftMargin, topMargin;
+window.addEventListener("mousedown",  function() {
     mousedown = true;
+    startDraw();
+    c.arc(mx, my, 0.5, Math.PI*2, 0);
+    c.stroke();
 });
-window.addEventListener("touchstart", function() {
-    mousedown = true;
+window.addEventListener("mouseup",    function() {
+    mousedown = false;
+    c.closePath();
 });
 
 window.addEventListener("mousemove", function(e) {
     oldmx = mx;
     oldmy = my;
-    mx = window.event.clientX;
-    my = window.event.clientY;
+    leftMargin = (window.innerWidth - canvas.width)/2;
+    topMargin = (window.innerHeight - canvas.height)/2;
+    mx = window.event.clientX - leftMargin;
+    my = window.event.clientY - topMargin;
     if (mousedown) draw();
 });
-window.addEventListener("touchmove", function(e) {
-    oldmx = mx;
-    oldmy = my;
-    mx = window.event.clientX;
-    my = window.event.clientY;
-    draw();
-});
 
-function draw() {
-    c.beginPath();
+function startDraw() {
     c.lineWidth = 1;
     c.strokeStyle = "#ffffff";
-    c.moveTo(oldmx, oldmy);
+    c.beginPath();
+    c.moveTo(mx, my);
+}
+
+function draw() {
     c.lineTo(mx, my);
     c.stroke();
 }

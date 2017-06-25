@@ -11,7 +11,7 @@
 
 	<body style="background-color:#272730">
 		<section class="main">
-			<canvas></canvas>
+			<canvas style="background-color:#303039"></canvas>
 		</section>
 		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 		<script src="main.js?r=<?=rand(0,999)?>"></script>
