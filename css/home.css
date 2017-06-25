@@ -18,9 +18,9 @@ body.eight .icons { display: flex; justify-content: space-between; }
 
 body.eight .icons div { width: 48px; height: 48px; margin: 10px; border-radius: 100px; background-repeat: no-repeat; background-size: 24px; background-position: center; transition: background 200ms cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; opacity: 0.8; }
 
-body.eight .icons div.clear { background-image: url("/8/ic_clear_white_48px.svg"); }
+body.eight .icons div.clear { background-image: url("../8/ic_clear_white_48px.svg"); }
 
-body.eight .icons div.done { background-image: url("/8/ic_done_white_48px.svg"); }
+body.eight .icons div.done { background-image: url("../8/ic_done_white_48px.svg"); }
 
 body.eight .icons div:hover { background-color: rgba(255, 255, 255, 0.12); }
 
