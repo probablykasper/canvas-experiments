@@ -7,15 +7,12 @@
 		<!--Roboto--> <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
 		<!--Favicon: http:/#F986DF/realfavicongenerator.net -->
 		<link rel="stylesheet" type="text/css" href="../css/home.css?r=<?=rand(0,999)?>">
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
 	</head>
 
-	<body style="background-color:#272730">
+	<body class="eight" style="background-color:#272730">
 		<section class="main">
 			<canvas style="background-color:#303039"></canvas>
 		</section>
-		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script> -->
 		<script src="main.js?r=<?=rand(0,999)?>"></script>
 	</body>
 </html>
