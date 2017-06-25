@@ -11,28 +11,29 @@ var c = canvas.getContext("2d");
 
 var cw, ch;
 function resize() {
-    cw = window.innerWidth-50;
-    ch = window.innerHeight-50;
+    cw = window.innerWidth;
+    ch = window.innerHeight;
     // if cw is odd, make aspect ratio correct (2:1)
     if (cw%2 == 1) cw--;
 
     // set canvas w/h
-    if (ch < cw/2) {
-        ch -= 68;
+    if (ch < cw/2+29) {
+        ch -= 58;
         section.style.width = ch*2+"px";
         section.style.height = ch+"px";
         canvas.width = ch*2;
         canvas.height = ch;
-        section.style.left = "calc(50% - 34px)";
+        section.style.left = "calc(50% - 29px)";
         section.style.display = "flex";
-        icons.style.flexDirection = "column"
+        icons.style.flexDirection = "column";
+        icons.style.marginRight = "0px";
     } else {
-        cw -= 68;
+        cw -= 58;
         section.style.width = cw+"px";
         section.style.height = cw/2+"px";
         canvas.width = cw;
         canvas.height = cw/2;
-        section.style.top = "calc(50% - 34px)";
+        section.style.top = "calc(50% - 29px)";
     }
 }
 resize();
