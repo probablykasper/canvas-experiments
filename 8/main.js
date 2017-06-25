@@ -1,6 +1,12 @@
 "use strict";
 // init canvas
 var canvas = document.querySelector("canvas");
+var section = document.querySelector("section");
+var icons = document.querySelector("div.icons");
+var clear = document.querySelector("div.clear");
+var done = document.querySelector("div.done");
+var imgDiv = document.querySelector("div.img");
+var imgDOM = document.querySelector("img");
 var c = canvas.getContext("2d");
 
 var cw, ch;
@@ -12,11 +18,21 @@ function resize() {
 
     // set canvas w/h
     if (ch < cw/2) {
+        ch -= 68;
+        section.style.width = ch*2+"px";
+        section.style.height = ch+"px";
         canvas.width = ch*2;
         canvas.height = ch;
+        section.style.left = "calc(50% - 34px)";
+        section.style.display = "flex";
+        icons.style.flexDirection = "column"
     } else {
+        cw -= 68;
+        section.style.width = cw+"px";
+        section.style.height = cw/2+"px";
         canvas.width = cw;
         canvas.height = cw/2;
+        section.style.top = "calc(50% - 34px)";
     }
 }
 resize();
@@ -73,7 +89,6 @@ window.addEventListener("mousemove", function(e) {
 
 
 function startDraw() {
-    console.log("start");
     c.lineWidth = 1;
     c.strokeStyle = "#ffffff";
     drawing = true;
@@ -88,77 +103,13 @@ function draw() {
     c.stroke();
 }
 
-
-
-
-function old() {
-    "use strict";
-    // init canvas
-    var canvas = document.querySelector("canvas");
-    var c = canvas.getContext("2d");
-
-    var cw, ch;
-    function resize() {
-        cw = window.innerWidth-50;
-        ch = window.innerHeight-50;
-        // if cw is odd, make aspect ratio correct (2:1)
-        if (cw%2 == 1) cw--;
-
-        // set canvas w/h
-        if (ch < cw/2) {
-            canvas.width = ch*2;
-            canvas.height = ch;
-        } else {
-            canvas.width = cw;
-            canvas.height = cw/2;
-        }
-    }
-
-    // update canvas size
-    resize();
-    // window.addEventListener("resize", function() {
-    //     resize();
-    // });
-
-    var mousedown, mx, my, oldmx, oldmy, leftMargin, topMargin;
-    window.addEventListener("mousedown",  function() {
-        mousedown = true;
-        startDraw();
-    });
-    window.addEventListener("mouseup",    function() {
-        mousedown = false;
-    });
-    window.addEventListener("click", function() {
-        leftMargin = (window.innerWidth - canvas.width)/2;
-        topMargin = (window.innerHeight - canvas.height)/2;
-        mx = window.event.clientX - leftMargin;
-        my = window.event.clientY - topMargin;
-        c.moveTo(mx, my);
-        c.arc(mx, my, 0.5, Math.PI*2, 0);
-        c.stroke();
-    });
-
-    window.addEventListener("mousemove", function(e) {
-        if (mousedown) {
-            oldmx = mx;
-            oldmy = my;
-            leftMargin = (window.innerWidth - canvas.width)/2;
-            topMargin = (window.innerHeight - canvas.height)/2;
-            mx = window.event.clientX - leftMargin;
-            my = window.event.clientY - topMargin;
-            // if mousedown and inside canvas
-            draw();
-        }
-    });
-
-    function startDraw() {
-        c.beginPath();
-        c.lineWidth = 1;
-        c.strokeStyle = "#ffffff";
-    }
-
-    function draw() {
-        c.lineTo(mx, my);
-        c.stroke();
-    }
-}
+clear.addEventListener("click", function() {
+    c.clearRect(0, 0, cw, ch);
+});
+done.addEventListener("click", function() {
+    var img = canvas.toDataURL("image/png");
+    imgDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    imgDiv.style.pointerEvents = "all";
+    imgDOM.src = img;
+    console.log(img);
+});
