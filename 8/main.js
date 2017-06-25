@@ -108,7 +108,7 @@ clear.addEventListener("click", function() {
 });
 done.addEventListener("click", function() {
     var img = canvas.toDataURL("image/png");
-    imgDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    imgDiv.style.backgroundColor = "rgba(0, 0, 0, 1)";
     imgDiv.style.pointerEvents = "all";
     imgDOM.src = img;
     console.log(img);
