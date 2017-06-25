@@ -21,48 +21,70 @@ function resize() {
 }
 resize();
 
-// get position of the touch relative to canvas
+// get position of the touch/mouse relative to canvas
 function getTouchPos(e) {
     return {
         x: e.touches[0].clientX - canvas.getBoundingClientRect().left,
         y: e.touches[0].clientY - canvas.getBoundingClientRect().top
     }
 }
+function getMousePos(e) {
+    return {
+        x: e.clientX - canvas.getBoundingClientRect().left,
+        y: e.clientY - canvas.getBoundingClientRect().top
+    }
+}
 
-var touchPos = {}, touchPosLast = {}, drawing;
+var pos = {}, posLast = {}, drawing;
 // on touch down
 canvas.addEventListener("touchstart", function(e) {
     var touch = e.touches[0];
-    touchPos = getTouchPos(e);
+    pos = getTouchPos(e);
     startDraw();
 }, false);
 // on touch up
-canvas.addEventListener("touchend", function (e) {
+window.addEventListener("touchend", function (e) {
     endDraw();
 }, false);
 // on touch move
-canvas.addEventListener("touchmove", function(e) {
-    touchPosLast = touchPos;
-    touchPos = getTouchPos(e);
+window.addEventListener("touchmove", function(e) {
     if (drawing) {
+        posLast = pos;
+        pos = getTouchPos(e);
         draw();
     }
 }, false);
 
+// on mouse down
+canvas.addEventListener("mousedown", function(e) {
+    pos = getMousePos(e);
+    startDraw();
+});
+window.addEventListener("mouseup", function(e) {
+    endDraw();
+});
+window.addEventListener("mousemove", function(e) {
+    if (drawing) {
+        posLast = pos;
+        pos = getMousePos(e);
+        draw();
+    }
+});
+
+
 function startDraw() {
     console.log("start");
-    c.beginPath();
     c.lineWidth = 1;
     c.strokeStyle = "#ffffff";
     drawing = true;
 }
 function endDraw() {
-    console.log("end");
     drawing = false;
 }
 function draw() {
-    c.moveTo(touchPosLast.x, touchPosLast.y);
-    c.lineTo(touchPos.x, touchPos.y);
+    c.beginPath();
+    c.moveTo(posLast.x, posLast.y);
+    c.lineTo(pos.x, pos.y);
     c.stroke();
 }
 
