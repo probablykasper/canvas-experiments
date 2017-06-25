@@ -6,7 +6,7 @@
 		<title>Canvas</title>
 		<!--Roboto--> <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
 		<!--Favicon: http:/#F986DF/realfavicongenerator.net -->
-		<link rel="stylesheet" type="text/css" href="../css/home.css?r=<?=rand(0,999)?>">
+		<!-- <link rel="stylesheet" type="text/css" href="../css/home.css?r=<?=rand(0,999)?>"> -->
 	</head>
 
 	<body style="background-color:#2B2330">
