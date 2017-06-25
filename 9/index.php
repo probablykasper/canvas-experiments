@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/home.css?r=<?=rand(0,999)?>">
 	</head>
 
-	<body class="9" style="background-color:#2B2330">
+	<body class="nine" style="background-color:#2B2330">
 		<section class="main">
 			<canvas style="background-color:#303039"></canvas>
 		</section>
