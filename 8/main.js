@@ -88,11 +88,18 @@ window.addEventListener("mousemove", function(e) {
     }
 });
 
+// on click
+canvas.addEventListener("click", function(e) {
+    pos = getTouchPos(e);
+
+})
+
+
 
 function startDraw() {
+    drawing = true;
     c.lineWidth = 1;
     c.strokeStyle = "#ffffff";
-    drawing = true;
 }
 function endDraw() {
     drawing = false;
